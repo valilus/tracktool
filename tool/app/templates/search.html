@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %} Search {% endblock %}
+
+{% block content_title %} Search {% endblock %}
+
+{% block content %}
+
+	<p>The Search API is optimized to help you find the specific item you're looking for (e.g., a specific user, a specific file in a repository, etc.). Think of it the way you think of performing a search on Google. It's designed to help you find the one result you're looking for (or maybe the few results you're looking for). Just like searching on Google, you sometimes want to see a few pages of search results so that you can find the item that best meets your needs. To satisfy that need, the GitHub Search API provides up to 1,000 results for each search.</p>
+	</br>
+
+	<form action="{{ url_for('search_repository_user') }}" method="post">
+		<div class="form-group">
+			<label for="exampleInputFile">File input</label>
+		    <input type="text" class="form-control" name="text" id="text" aria-describedby="text" placeholder="Enter a user or repository name">
+		    <p class="help-block">Example block-level help text here.</p>
+	    </div>
+	    <div class="input-group">
+		    <select class="form-control" name="tipology" id="tipology">
+	    		<option>REPOSITORY</option>
+	    		<option>USER</option>
+	    	</select>
+		    <span class="input-group-btn">
+		    	<button class="btn btn-default" value="submit" name="submit" type="submit"> SEARCH </button>
+		    </span>
+	    </div>
+	</form>
+
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

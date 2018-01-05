@@ -1,0 +1,139 @@
+/*  __author__ = 'Riccardo Di Curti' */
+
+.body {
+	height: 100% !important;;
+	width: 100% !important;;
+}
+.container {
+	width: 100%;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+.navbar-brand {
+    margin-left: 15px !important;
+    margin-right: -15px !important;
+}
+
+hr {
+	margin-top: 0px !important;
+}
+
+p {
+	margin-left: 4px !important;
+    margin-top: -9px;
+}
+
+.overlay {
+    opacity: 0.2 !important;
+}
+
+
+.row {
+    margin-left: 0px;
+    margin-right: 0px !important;
+}
+
+.logo-homepage {
+    margin-top: -10px;
+}
+
+.fade-carousel {
+    position: relative;
+    height: 100vh;
+}
+.fade-carousel .carousel-inner .item {
+    height: 100vh;
+}
+.fade-carousel .carousel-indicators > li {
+    margin: 0 2px;
+    background-color: #204B7C;
+    border-color: #121b38;
+    opacity: .7;
+}
+.fade-carousel .carousel-indicators > li.active {
+  width: 10px;
+  height: 10px;
+  opacity: 1;
+}
+
+.hero {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    color: #d0d0d0;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(34, 34, 34, 0.75);
+      -webkit-transform: translate3d(-50%,-50%,0);
+         -moz-transform: translate3d(-50%,-50%,0);
+          -ms-transform: translate3d(-50%,-50%,0);
+           -o-transform: translate3d(-50%,-50%,0);
+              transform: translate3d(-50%,-50%,0);
+}
+.hero h1 {
+    color: #fff;
+    font-size: 6em;    
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+}
+
+.hero h3 {
+    color:  #fff;
+}
+
+.fade-carousel .carousel-inner .item .hero {
+    opacity: 0;
+    -webkit-transition: 2s all ease-in-out .1s;
+       -moz-transition: 2s all ease-in-out .1s;
+        -ms-transition: 2s all ease-in-out .1s;
+         -o-transition: 2s all ease-in-out .1s;
+            transition: 2s all ease-in-out .1s;
+}
+.fade-carousel .carousel-inner .item.active .hero {
+    opacity: 1;
+    -webkit-transition: 2s all ease-in-out .1s;
+       -moz-transition: 2s all ease-in-out .1s;
+        -ms-transition: 2s all ease-in-out .1s;
+         -o-transition: 2s all ease-in-out .1s;
+            transition: 2s all ease-in-out .1s;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: #080d15;
+    opacity: .7;
+}
+
+.fade-carousel .slides .slide-1, 
+.fade-carousel .slides .slide-2,
+.fade-carousel .slides .slide-3 {
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.fade-carousel .slides .slide-1 {
+  background-image: url(https://images.unsplash.com/photo-1486892550160-64970cc58b1e?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=4685dc073fc3430322fed25f4fca7563);
+}
+.fade-carousel .slides .slide-2 {
+  background-image: url(https://images.unsplash.com/photo-1489013781457-bc56c53d0374?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=e96b478b6ea7b560a366f9ec5d671a82);
+}
+.fade-carousel .slides .slide-3 {
+  background-image: url(https://images.unsplash.com/photo-1480951786791-54a94c22bcd5?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=93852d35c22a614aaedf0c0c82b30788);
+}
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px){
+    .hero { width: 980px; }    
+}
+@media screen and (max-width: 640px){
+    .hero h1 { font-size: 4em; }    
+}

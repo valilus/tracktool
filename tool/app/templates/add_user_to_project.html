@@ -1,0 +1,121 @@
+<!-- __author__ = 'Riccardo Di Curti' -->
+
+{% extends "base.html" %}
+
+{% block title %}ADD USER TO REPOSITORY{% endblock %}
+
+{% block content_title %}ADD USER TO REPOSITORY{% endblock %}
+
+{% block content %}
+
+	<p>For organization-owned repositories, the list of collaborators includes outside collaborators, organization members with access through team memberships, organization members with access through default organization permissions, and organization owners.</p>
+	</br>
+
+	<p>DEFAULT PERMISSION push - can pull and push, but not administer this repository.</p>
+	</br>
+
+  	<form action="{{ url_for('add_user_to_project', user=user, repo=repo, collaborator=collaborator['login']) }}" method="post">
+    	<fieldset>
+      		<legend>Add this user to repository ?</legend>
+      		<!-- <pre>{{collaborator}}</pre> --> 
+
+			<div class="row">
+			  <div class="col-md-12">
+				  <table class="table table-striped">
+
+					<tr>
+					  <td>login</td>
+					  <td>{{collaborator["login"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>company</td>
+					  <td>{{collaborator["company"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>location</td>
+					  <td>{{collaborator["location"]}}</td>
+					</tr>
+
+					<tr>
+					  <td>public_repos</td>
+					  <td>{{collaborator["public_repos"]}}</td>
+					</tr>
+
+					<tr>
+					  <td>id</td>
+					  <td>{{collaborator["id"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>blog</td>
+					  <td>{{collaborator["blog"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>followers</td>
+					  <td>{{collaborator["followers"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>type</td>
+					  <td>{{collaborator["type"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>email</td>
+					  <td>{{collaborator["email"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>bio</td>
+					  <td>{{collaborator["bio"]}}</td>
+					</tr>	
+	
+
+					<tr>
+					  <td>html_url</td>
+					  <td>{{collaborator["html_url"]}}</td>
+					</tr>
+
+					<tr>
+					  <td>public_gists</td>
+					  <td>{{collaborator["public_gists"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>name</td>
+					  <td>{{collaborator["name"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>organizations_url</td>
+					  <td>{{collaborator["organizations_url"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>url</td>
+					  <td>{{collaborator["url"]}}</td>
+					</tr>	
+
+					<tr>
+					  <td>repos_url</td>
+					  <td>{{collaborator["repos_url"]}}</td>
+					</tr>
+
+					<tr>
+					  <td>following</td>
+					  <td>{{collaborator["following"]}}</td>
+					</tr>	
+	
+				</table>
+			  </div>
+			</div>  
+			    		
+      		<button class="btn btn-danger" type="submit">ADD</button>
+      		<a class="btn" href="{{ url_for('repo', user=user, repo=repo, n=1) }}">Cancel</a>
+    	</fieldset>
+  	</form>
+
+{% endblock %}

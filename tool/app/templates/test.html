@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}STAMPO IL TEST:{% endblock %}
+
+{% block content_title %}STAMPO IL TEST:{% endblock %}
+
+{% block content %}
+
+<pre> {{test}} </pre>
+
+{% endblock %}
+
+{% block sidebar %}
+	<ul class="well nav nav-stacked">
+		<li><a href="http://127.0.0.1:5000">HomePage</a></li>
+		<li><a href="http://127.0.0.1:5000/user">User</a></li>
+		<li><a href="http://127.0.0.1:5000/repos/create">Create new repo</a></li>
+		<li><a href="http://127.0.0.1:5000/zen">Zen</a></li>
+	</ul>
+{% endblock %}
+
+{% block extra_scripts %}
+{% endblock %}

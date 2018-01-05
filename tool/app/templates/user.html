@@ -1,0 +1,249 @@
+<!-- __author__ = 'Riccardo Di Curti' -->
+
+{% extends "base.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content_title %}My Profile{% endblock %}
+
+{% block content %}
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <span class="badge">{{user["public_repos"]}}</span>
+    public_repos
+  </li>
+  <li class="list-group-item">
+    <span class="badge">{{user["total_private_repos"]}}</span>
+    private_repos
+  </li>
+</ul>
+
+</br>
+
+<div class="row">
+  <div class="col-md-12">
+	  <table class="table table-striped">
+
+		<tr>
+		  <td>disk_usage</td>
+		  <td>{{user["disk_usage"]}}</td>
+		</tr>
+
+		<tr>
+		  <td>private_gists</td>
+		  <td>{{user["private_gists"]}}</td>
+		</tr>
+
+		<tr>
+		  <td>public_repos</td>
+		  <td>{{user["public_repos"]}}</td>
+		</tr>
+
+		<tr>
+		  <td>site_admin</td>
+		  <td>{{user["site_admin"]}}</td>
+		</tr>
+
+		<tr>
+		  <td>subscriptions_url</td>
+		  <td>{{user["subscriptions_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>gravatar_id</td>
+		  <td>{{user["gravatar_id"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>hireable</td>
+		  <td>{{user["hireable"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>id</td>
+		  <td>{{user["id"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>followers_url</td>
+		  <td>{{user["followers_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>following_url</td>
+		  <td>{{user["following_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>collaborators</td>
+		  <td>{{user["collaborators"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>total_private_repo</td>
+		  <td>{{user["total_private_repos"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>blog</td>
+		  <td>{{user["blog"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>followers</td>
+		  <td>{{user["followers"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>location</td>
+		  <td>{{user["location"]}}</td>
+		</tr>
+
+		<tr>
+		  <td>type</td>
+		  <td>{{user["type"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>email</td>
+		  <td>{{user["email"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>bio</td>
+		  <td>{{user["bio"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>gists_url</td>
+		  <td>{{user["gists_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>owned_private_repos</td>
+		  <td>{{user["owned_private_repos"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>company</td>
+		  <td>{{user["company"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>events_url</td>
+		  <td>{{user["events_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>html_url</td>
+		  <td>{{user["html_url"]}}</td>
+		</tr>
+
+		<tr>
+		  <td>plan</td>
+		  <td>{{user["plan"]}}</td>
+		</tr>
+
+		<tr>
+		  <td>updated_at</td>
+		  <td>{{user["updated_at"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>received_events_url</td>
+		  <td>{{user["received_events_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>starred_url</td>
+		  <td>{{user["starred_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>public_gists</td>
+		  <td>{{user["public_gists"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>name</td>
+		  <td>{{user["name"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>organizations_url</td>
+		  <td>{{user["organizations_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>url</td>
+		  <td>{{user["url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>created_at</td>
+		  <td>{{user["created_at"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>events_url</td>
+		  <td>{{user["events_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>avatar_url</td>
+		  <td>{{user["avatar_url"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>repos_url</td>
+		  <td>{{user["repos_url"]}}</td>
+		</tr>
+
+		<tr>
+		  <td>following</td>
+		  <td>{{user["following"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>login</td>
+		  <td>{{user["login"]}}</td>
+		</tr>	
+
+		<tr>
+		  <td>two_factor_authentication</td>
+		  <td>{{user["two_factor_authentication"]}}</td>
+		</tr>	
+	</table>
+  </div>
+</div>
+
+<a href="{{ user['html_url'] }}"><img src="{{ url_for('static', filename='images/icon/github/github.svg') }}" alt="github-logo" class="img-rounded center-block" width="40"></a>
+
+{% endblock %}
+
+{% block sidebar %}
+	<ul class="well nav nav-stacked">
+		<li>
+			<center>
+				<img src="{{ user["avatar_url"] }}" alt="github-gravatar" width="180px" class="img-circle">
+				<br>
+				<h3 style="margin-bottom: 12px">{{user["login"]}}</h3>
+				<span>{{user["bio"]}}</span>
+			</center>
+		</li> 
+		<br>
+		<li>
+			<div class="progress">
+			  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{ 100 - ( user['disk_usage'] * 100 ) / user['plan']['space'] }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ 100 - (user['disk_usage'] * 100 ) / user['plan']['space'] }}%;">
+			  	{{'free memory space: %d' % (100 - (user['disk_usage'] * 100) / user['plan']['space'])}}%
+			  </div>
+			</div>
+		</li>
+	</ul>
+
+	<ul class="well nav nav-stacked">
+		<li><a class="btn btn-primary btn-lg" href="{{ url_for('repos') }}" role="button">My Projects</a></li>
+		<li><a class="btn btn-primary btn-lg" href="{{ url_for('events') }}" role="button">Last Events</a></li>
+	</ul>
+{% endblock %}

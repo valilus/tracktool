@@ -1,0 +1,94 @@
+<!doctype html> 
+<html leng="en">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}{% endblock %} | TRACKtask</title>
+  <link rel="stylesheet" href= "{{ url_for('static', filename='css/bootstrap-datetimepicker.css') }}">
+  <link rel="stylesheet" href= "{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href= "{{ url_for('static', filename='css/style.css') }}">
+
+  
+  <style type="text/css">
+    body { padding-top: 60px; }
+  </style>
+  {% block extra_styles %}{% endblock %}
+
+  <script src="{{ url_for('static', filename='js/jquery-3.1.1.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/moment.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap-datetimepicker.js') }}"></script>
+  <script type=text/javascript> $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}; </script>
+  {% block extra_scripts %}{% endblock %}
+</head>
+  <body class="{% block body_class %}{% endblock %}">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <!-- bottone per menu mobile -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- menu  -->
+          <a class="navbar-brand" href="{{ url_for('homepage') }}">{% block branding %}TRACKtask{% endblock %}</a>
+        </div>
+        <div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+        {% if request.cookies.get('github_access_token') %}
+          <li><a href="{{ url_for('search') }}">Search</a></li>
+          <li><a href="{{ url_for('dashboard') }}"> Dashboard </a></li>
+          <li><a href="{{ url_for('repos') }}"> Projects </a></li>
+          <li><a href="{{ url_for('user') }}"> Profile </a></li>
+          <li><a href="{{ url_for('settings') }}"> Settings </a></li>
+          <li><a href="{{ url_for('logout', next=request.path) }}">Logout</a></li>
+        {% else %}
+          <li><a href="{{ url_for('login', next=request.path) }}" >Login</a></li>
+        {% endif %}
+			  
+        {% block extra_nav %}{% endblock %}
+
+			</ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          {% for category, message in get_flashed_messages(with_categories=true) %}
+            <div class="alert alert-dismissable alert-{{ category }}">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+            </div>
+          {% endfor %}
+          <h1>{% block content_title %}{% endblock %}</h1>
+          {% block content %}
+          {% endblock %}
+        </div>
+        <div class="col-md-3 sidebar">
+          {% block sidebar %}
+            <ul class="well nav nav-stacked">
+              <li>niente</li>
+            </ul>
+          {% endblock %}
+        </div>
+      </div>
+      <div class="row">
+        <hr />
+        <footer>
+          <!-- footer  -->
+          <div class="row">
+            <div class="col-md-9">
+            <p>&copy; Riccardo Di Curti & Valeric Lupoaie </p>
+            </div>
+            <div class="col-md-3">
+            <a href="http://github.com" ><img src="{{ url_for('static', filename='images/icon/github/logo.png') }}" alt="github-logo" class="img-rounded pull-right" height="20"></a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

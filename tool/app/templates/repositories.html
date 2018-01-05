@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %} My Projects {% endblock %}
+
+{% block content_title %} My Projects {% endblock %}
+
+{% block content %}
+	{% for repo in repos %}
+		<div class="jumbotron bg-warning">
+			<div class="row">
+			    <div class="col-sm-9">
+						<h3>{{ repo["full_name"]}}</h3>
+				</div>
+				<div class="col-sm-3 text-right">
+				    <a class="btn btn-primary btn-lg" href="{{ url_for('repo', user=repo['owner']['login'], repo=repo['name'], n=1) }}" role="button">TO PROJECT <span class="glyphicon glyphicon-menu-right"></span> </a>
+				</div>	
+			</div>
+			<div class="row">
+			    <div class="col-xs-12">
+			    	<p class="text-justify">{{ repo['description'] }}</p>
+			    </div>
+			</div>    
+			<div class="row">
+				<div class="col-xs-12">
+			    	{% if repo["private"] %} 
+			    		<span class="glyphicon glyphicon-eye-close"></span> private 
+			    	{% else %} 
+			    		<span class="glyphicon glyphicon-eye-open"></span> public 
+			    	{% endif %}
+					| last update: {{ repo['updated_at'] }} | Open issues : {{ repo['open_issues_count'] }}
+                    <!-- | admin: {{ repo['permissions']['admin'] }} -->
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+{% endblock %}
+
+{% block sidebar %}
+<ul class="well nav nav-stacked">
+	<div class="row">
+	    <div class="col-md-12 ">
+	    	<center>
+	    		<a class="btn btn-primary btn-lg" href="{{ url_for('crepo') }}" role="button"><span class="glyphicon glyphicon-edit"></span> NEW PROJECT</a>
+	    	</center>
+	    </div>
+	</div>
+</ul>
+<ul class="well nav nav-stacked">
+	<div class="row">
+	    <div class="col-md-12 ">
+	    	<center>
+	    		<h4>LAST UPDATE</h4>
+	    		</br>
+	    		<p> Last events will be displayed here </p>
+	    		<!-- TODO: Aggiungere ultimi avventimenti collegate alle repository -->
+	    	</center>
+	    </div>
+	</div>
+</ul>
+{% endblock %}

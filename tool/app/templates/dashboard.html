@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+
+{% block content %}
+
+    <script type="text/javascript">
+	function show(target){
+		document.getElementById("pannello").style.display = 'block';
+		document.getElementById("story").style.display = 'none';
+		document.getElementById("todo").style.display = 'none';
+		document.getElementById("progress").style.display = 'none';
+		document.getElementById("test").style.display = 'none';
+		document.getElementById("done").style.display = 'none';
+		document.getElementById(target).style.display = 'block';
+	}
+	function chiudi(target){
+		document.getElementById("story").style.display = 'none';
+		document.getElementById("todo").style.display = 'none';
+		document.getElementById("progress").style.display = 'none';
+		document.getElementById("test").style.display = 'none';
+		document.getElementById("done").style.display = 'none';
+		document.getElementById("pannello").style.display = 'none';
+	}
+</script>
+
+
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+  <div class="btn-group" role="group">
+    <button type="button" onclick="show('story')" class="btn btn-default">Stories</button>
+  </div>
+        <div class="btn-group" role="group">
+    <button type="button" onclick="show('todo')" class="btn btn-default">Todo</button>
+  </div>
+        <div class="btn-group" role="group">
+    <button type="button" onclick="show('progress')" class="btn btn-default">In Progress</button>
+  </div>
+  <div class="btn-group" role="group">
+    <button type="button" onclick="show('test')" class="btn btn-default">Testing</button>
+  </div>
+      <div class="btn-group" role="group">
+    <button type="button" onclick="show('done')" class="btn btn-default">Done</button>
+  </div>
+</div>
+
+    <div style="display:none;" class="panel panel-default" id="pannello">
+	<div class="panel-body">
+	   	<div style="display:none;" id="story">
+	   		<button class="chiudi" onclick="chiudi('c')">X</button>
+            <div class="jumbotron bg-warning">
+			    <div class="row">
+                {% for repo in repos %}
+			    <div class="col-sm-9">
+						<h3>{{ repo["name"]}}</h3>
+				</div>
+				<div class="col-sm-3 text-right">
+				    </div>
+                {% endfor %}
+			</div>
+
+
+		</div>
+
+
+	   	</div>
+
+	   	<div style="display:none;" id="todo">
+	   		<button class="chiudi" onclick="chiudi('c')">X</button>
+
+	   		<center><h3>ADD TITLE</h3></center>
+	   		<form action="{{ url_for('org_add_title') }}" method="post">
+
+	   			<div class="form-group">
+				    <label for="exampleInputEmail1">Title</label>
+				    <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp" placeholder="Enter title">
+				    <small id="emailHelp" class="form-text text-muted">Add a simple title.</small>
+				</div>
+
+				<div class="form-group">
+				    <label for="exampleInputEmail1">Title contect</label>
+				    <input type="text" class="form-control" name="contect" id="contect" aria-describedby="emailHelp" placeholder="Enter contect">
+				    <small id="emailHelp" class="form-text text-muted">add more information.</small>
+				</div>
+
+				  <button class="btn btn-primary btn-lg" value="{{ repos["full_name"] }}" name="submit" type="submit">Submit</button>
+	   		</form>
+	   	</div>
+	</div>
+</div>
+
+
+		<div class="jumbotron bg-warning">
+			<div class="row">
+                {% for repo in repos %}
+
+
+			    <div class="col-sm-9">
+						<h3>{{ repo["name"]}}</h3>
+				</div>
+				<div class="col-sm-3 text-right">
+				    </div>
+                {% endfor %}
+			</div>
+
+
+		</div>
+
+
+{% endblock %}
+
+{% block sidebar %}
+<ul class="well nav nav-stacked">
+</ul>
+{% endblock %}

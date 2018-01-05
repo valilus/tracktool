@@ -1,0 +1,283 @@
+<!-- __author__ = 'Riccardo Di Curti' -->
+
+{% extends "base.html" %}
+
+{% block title %} Events {% endblock %}
+
+{% block content_title %} Events {% endblock %}
+
+{% block content %}
+
+<p>
+The timeline includes only the events created within the past 90 days. 
+</p>
+
+</br>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+	{% for event in events %}
+		<div class="panel panel-default">
+		    <div class="panel-heading" role="tab" id="heading{{event.id}}">
+		      <h4 class="panel-title">
+		        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{event.id}}" aria-expanded="true" aria-controls="collapse{{event.id}}">
+		        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> {{event["type"]}} #{{event.id}}
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapse{{event.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{event.id}}">
+		      <div class="panel-body">
+		        <table class="table table-striped">
+		        	{% if  "CreateEvent" in event["type"] %}
+		        	<tr>
+					  <td>display_login</td>
+					  <td>{{event["actor"]["display_login"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>created_at</td>
+					  <td>{{event["created_at"]}}</td>
+					</tr>
+
+					<tr>
+					  <td>id</td>
+					  <td>{{event["id"]}}</td>
+					</tr>
+
+					<tr>
+					  <td>description</td>
+					  <td>{{event["payload"]["description"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>master_branch</td>
+					  <td>{{event["payload"]["master_branch"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>pusher_type</td>
+					  <td>{{event["payload"]["pusher_type"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>ref</td>
+					  <td>{{event["payload"]["ref"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>ref_type</td>
+					  <td>{{event["payload"]["ref_type"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>repo id</td>
+					  <td>{{event["repo"]["id"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>name</td>
+					  <td>{{event["repo"]["name"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>url</td>
+					  <td>{{event["repo"]["url"]}}</td>
+					</tr>
+					{% endif %}		
+
+					{% if  "IssuesEvent" in event["type"] %}
+					
+					{{event}}
+					
+					{% endif %}	
+
+		        	{% if  "PushEvent" in event["type"] %}
+
+                        <!--
+
+                        {
+   u'payload':{
+      u'size':1,
+      u'head':u'90c5e0d81f4f8c90a733ee5c1cae85e203edf0ef',
+      u'commits':[
+         {
+            u'distinct':True,
+            u'sha':u'90c5e0d81f4f8c90a733ee5c1cae85e203edf0ef',
+            u'message':u'installation procedure fix',
+            u'url':            u'https://api.github.com/repos/csaq7440/tracktask/commits/90c5e0d81f4f8c90a733ee5c1cae85e203edf0ef',
+            u'author':{
+               u'email':u'elisachiti@MBP-di-Elisa.homenet.telecomitalia.it',
+               u'name':u'Elisa Chiti'
+            }
+         }
+      ],
+      u'distinct_size':1,
+      u'push_id':1682527202,
+      u'ref':u'refs/heads/master',
+      u'before':u'e5d576917f3e8fa4915e22924be3378ff70b9cd7'
+   },
+   u'created_at':   u'2017-04-16T16:44:11   Z',
+   u'actor':{
+      u'url':      u'https://api.github.com/users/csaq7440',
+      u'display_login':u'csaq7440',
+      u'avatar_url':      u'https://avatars.githubusercontent.com/u/22771086?',
+      u'gravatar_id':u'',
+      u'login':u'csaq7440',
+      u'id':22771086
+   },
+   u'id':u'5696923883',
+   u'repo':{
+      u'url':      u'https://api.github.com/repos/csaq7440/tracktask',
+      u'id':88418782,
+      u'name':u'csaq7440/tracktask'
+   },
+   u'type':u'PushEvent',
+   u'public':True
+}
+
+                        -->
+
+                        <tr>
+                          <td>repo name</td>
+                          <td>{{event["repo"]["name"]}}</td>
+                        </tr>
+
+                        <tr>
+                          <td>created_at</td>
+                          <td>{{event["created_at"]}}</td>
+                        </tr>
+
+                        <tr>
+                          <td>size</td>
+                          <td>{{event["payload"]["size"]}}</td>
+                        </tr>
+
+                        <tr>
+                          <td>head</td>
+                          <td>{{event["payload"]["head"]}}</td>
+                        </tr>
+
+                        <tr>
+                          <td>push_id</td>
+                          <td>{{event["payload"]["push_id"]}}</td>
+                        </tr>
+
+                        {% for commit in event["payload"]["commits"] %}
+
+                            <tr>
+                              <td>distinct</td>
+                              <td>{{commit["distinct"]}}</td>
+                            </tr>
+
+                            <tr>
+                              <td>message</td>
+                              <td>{{commit["message"]}}</td>
+                            </tr>
+
+                            <tr>
+                              <td>author name</td>
+                              <td>{{commit["author"]["name"]}}</td>
+                            </tr>
+
+                            <tr>
+                              <td>author email</td>
+                              <td>{{commit["author"]["email"]}}</td>
+                            </tr>
+
+                        {% endfor %}
+
+		        	{% endif %}	
+
+
+		        	{% if  "WatchEvent" in event["type"] %}
+
+		        	{{event}}
+
+		        	{% endif %}
+
+
+                    {% if  "MemberEvent" in event["type"] %}
+
+		        	{{event}}
+
+		        	{% endif %}
+
+		        	<!--
+		        	<tr>
+					  <td>display_login</td>
+					  <td>{{event["actor"]["display_login"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>created_at</td>
+					  <td>{{event["created_at"]}}</td>
+					</tr>
+
+					<tr>
+					  <td>id</td>
+					  <td>{{event["id"]}}</td>
+					</tr>
+
+					<tr>
+					  <td>description</td>
+					  <td>{{event["payload"]["description"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>master_branch</td>
+					  <td>{{event["payload"]["master_branch"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>pusher_type</td>
+					  <td>{{event["payload"]["pusher_type"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>ref</td>
+					  <td>{{event["payload"]["ref"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>ref_type</td>
+					  <td>{{event["payload"]["ref_type"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>repo id</td>
+					  <td>{{event["repo"]["id"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>name</td>
+					  <td>{{event["repo"]["name"]}}</td>
+					</tr>
+
+		        	<tr>
+					  <td>url</td>
+					  <td>{{event["repo"]["url"]}}</td>
+					</tr>
+					-->
+
+		        </table>
+		      </div>
+		    </div>
+		</div>
+	{% endfor %}
+</div> 
+
+{% endblock %}
+
+{% block sidebar %}
+<!-- 
+<ul class="well nav nav-stacked">
+	    <div class="row">
+	    	<div class="col-md-6 ">
+	    		<a class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/repos/create" role="button"><span class="glyphicon glyphicon-edit"></span> CREATE </a>
+	    	</div>
+	    	<div class="col-md-6 ">
+	    		<a class="btn btn-primary btn-lg" href="http://127.0.0.1:5000/zen" role="button"><span class="glyphicon glyphicon-refresh"></span> ZEN </a>
+	    	</div>
+	    </div>
+	</ul>
+-->
+{% endblock %}

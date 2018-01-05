@@ -1,0 +1,18 @@
+<!-- __author__ = 'Riccardo Di Curti' -->
+
+{% extends "base.html" %}
+
+{% block title %}410{% endblock %}
+
+{% block content_title %}410{% endblock %}
+
+{% block content %}
+<p>Did you know that there the “404 Not Found” has a brother named “410 Gone”? Few people actually implement that, but the idea is that resources that previously existed and got deleted answer with 410 instead of 404. If you are not deleting documents permanently from the database but just mark them as deleted, do the user a favour and use the 410 code instead and display a message that what they were looking for was deleted for all eternity.</p>
+{% endblock %}
+
+{% block sidebar %}
+<ul class="well nav nav-stacked">
+	<li><a href="#">HomePage</a></li>
+	<li><a href="#">Projects</a></li>
+</ul>
+{% endblock %}

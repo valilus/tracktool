@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %} My Settings {% endblock %}
+
+{% block content_title %} My Settings {% endblock %}
+
+{% block content %}
+
+	<div class="panel panel-default">
+		<div class="panel-heading">
+	    	<h3 class="panel-title"> EDIT COLLABORATOR'S EMAIL</h3>
+	    	</br>
+	    	<p>You will see the list of projects of which you are admin open at least once. The panel considers you to add and edit collaborators emails.</p>
+	  	</div>
+	  	<div class="panel-body">
+		{% for hook in hooks %}
+			<div class="panel-heading" role="tab" id="heading{{hook}}">
+			    <h4 class="panel-title">
+			     	<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{{ loop.index }}" aria-expanded="true" aria-controls="collapse{{ loop.index }}">
+			        <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span> {{ hook }} 
+			        </a>
+			    </h4>
+			</div>
+
+			<div id="collapse{{ loop.index }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{{ loop.index }}">
+	    	    <div class="panel-body">
+	    			<center><strong> {{ hook }} </strong></center>
+	    			</br>
+	    			<table class="table table-hover">
+	    				{% for utente in hooks[hook] %}
+	    					<tr>
+	    						<td>{{ utente }}</td>
+	    						<td>{{ hooks[hook][utente] }}</td>
+	    					</tr>
+	    				{% endfor %}
+	    			</table>
+
+	    			<form action="{{ url_for('settings_update_email') }}" method="post">
+	    				<div class="input-group">
+	    					<select class="form-control" name="utente" id="utente">
+	    						{% for utente in hooks[hook] %}
+	    							 <option>{{ utente }}</option>
+	    						{% endfor %}
+	    					</select>
+	    					<span class="input-group-btn">
+	    						<button class="btn btn-default" value="{{ hook }}" name="submit" type="submit">UPDATE</button>
+	    					</span>
+	    				</div>
+	    				<div class="form-group">
+	    					<input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter new email">
+	    				</div>
+	    			</form>
+
+
+		      	</div>
+		    </div>
+
+		{% endfor %}
+		
+	  	</div>
+	</div>
+
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}

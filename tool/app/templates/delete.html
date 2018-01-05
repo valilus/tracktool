@@ -1,0 +1,17 @@
+<!-- __author__ = 'Riccardo Di Curti' -->
+
+{% extends "base.html" %}
+
+{% block title %}{{slug}}{% endblock %}
+
+{% block content_title %}{{slug}}{% endblock %}
+
+{% block content %}
+  <form action="{{ url_for('drepo', slug=slug) }}" method="post">
+    <fieldset>
+      <legend>Delete this entry?</legend>
+      <button class="btn btn-danger" type="submit">Delete</button>
+      <a class="btn" href="{{ url_for('repos') }}">Cancel</a>
+    </fieldset>
+  </form>
+{% endblock %}
