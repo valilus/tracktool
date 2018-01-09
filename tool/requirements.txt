@@ -1,0 +1,16 @@
+apt-xapian-index==0.44
+chardet==2.0.1
+click==6.7
+command-not-found==0.2.44
+Flask==0.12.2
+GnuPGInterface==0.3.2
+itsdangerous==0.24
+Jinja2==2.10
+language-selector==0.1
+MarkupSafe==1.0
+pycurl==7.19.0
+python-apt===0.8.3ubuntu7
+python-debian===0.1.21ubuntu1
+ufw==0.31.1.post1
+unattended-upgrades==0.1
+Werkzeug==0.14.1

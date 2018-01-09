@@ -21,7 +21,6 @@ from flask import redirect, request, json
 from flask_mail import Mail, Message
 
 from datetime import datetime
-from dateutil.tz import tzoffset
 from threading import Thread
 
 __version__ = '3.1.6'

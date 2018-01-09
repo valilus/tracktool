@@ -1,41 +1,48 @@
 # TRACKTASK
-> Short blurb about what your product does.
+Prerequisites
 
-One to two paragraph statement about your product and what it does.
 
-## Deployment
+VirtualBox
+Download from: https://www.virtualbox.org/wiki/Downloads
 
-### FIRST TERMINAL 
+Install Vagrant 1.5.x
+http://www.vagrantup.com/downloads.html
 
-```sh
-cd tool/
-((source venv/bin/activate))
-(( pip install -r requirements.txt ))
-cd app/
+
+
+## Setup
+To setup a development environment the following steps must be taken:
+
+### First terminal 
+
+### go inside tool folder
+$ cd tool
+
+### boot up vagrant
+$ vagrant up
+
+### ssh into vagrant
+$ vagrant ssh
+
+### go to source directory
+$ cd /vagrant
+
+### go to the app directory
+$ cd app
+
+### run the app
 python manage.py runserver
-```
+
 
 ### SECOND TERMINAL 
 
 ```sh
 cd tool/
-(( ./ngrok authtoken 5CRbpMXTsoU8QWjBG3nnA_T1qMPb1vXuWJR3rmKSHM )) 
 ./ngrok http -region=us -hostname=tracktask.ngrok.io 5000
 ```
 
 NOW VISIT: http://tracktask.ngrok.io/
 
-### Requirements
-* Investigation of project management workflows
-* Development of a project management tool
-	* Support for task management, monitoring, etc
-	* Web-based frontend
-	* Git-based backend (text files)
-	* support for email based workflows
-	* support for multiple users
-	* support for different roles (viewer, reporter, developer, etc.)
-	* Quick deployment & initialization of new projects
-	* Preferred language: Python/Flask  (negotiable)
 
 ## Featurest
 * support for different roles (viewer, reporter, developer, etc.)

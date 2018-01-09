@@ -2,11 +2,11 @@
                                
 set -e
 
-#export LANGUAGE=en_US.UTF-8
-#export LANG=en_US.UTF-8
-#export LC_ALL=en_US.UTF-8
-#locale-gen en_US.UTF-8
-#dpkg-reconfigure locales
+export LANGUAGE=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+locale-gen en_US.UTF-8
+dpkg-reconfigure locales
 
 echo
 echo "Environment installation is beginning.  This may take a few minutes ..."
@@ -26,19 +26,18 @@ sudo apt-get update
 echo
 echo "Installing ubuntu python packages ..."
 sudo apt-get install -y python \
-                   python-dev \
+                   python-dev libffi-dev libssl-dev \
                    python-pip \
                    python-software-properties
 
 
 echo
-#sudo apt-get remove python-pip
-#pip uninstall pip
-sudo apt-get install python-setuptools
-sudo easy_install pip==1.2.1
+
+sudo pip install --upgrade pip -i https://pypi.python.org/simple
 
 echo "Installing python packages ..."
-sudo pip install -qq -r /vagrant/deploy/requirements.txt
+sudo pip install --upgrade setuptools
+sudo pip install  -qq -r /vagrant/deploy/requirements.txt
 
 #mkdir -p /vagrant/.pip_download_cache
 #export PIP_DOWNLOAD_CACHE=/vagrant/.pip_download_cache
@@ -47,7 +46,6 @@ sudo pip install -qq -r /vagrant/deploy/requirements.txt
 #virtualenv --system-site-packages $VIRTUALENV
 #source $VIRTUALENV/bin/activate
 #pip install -r /vagrant/deploy/requirements.txt
-#pip install -r /vagrant/deploy/requirements.txt --no-index --find-links file:///tmp/packages
 
 #if [ $? -gt 0 ]; then
 #    echo 2> 'Unable to install python requirements from requirements.txt'
@@ -69,8 +67,5 @@ echo "If this is your first time, you should install the virtual machine guest a
 echo "To do that, ssh into the machine (vagrant ssh) and run: sudo ./postinstall.sh"
 echo
 
-cd ..
-cd /vagrant/app/
-python manage.py runserver
 
 exit 0
